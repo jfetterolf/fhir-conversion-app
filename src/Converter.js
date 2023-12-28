@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography, AppBar, IconButton } from '@mui/material'
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography, AppBar, IconButton, Box } from '@mui/material'
 import Toolbar from '@mui/material/Toolbar';
 import Icon from '@mui/material/Icon';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -7,6 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 // import MenuIcon from '@mui/icons-material/Menu';
 import axios from 'axios';
 import './style/Global.scss'
+import { SystemSecurityUpdate } from '@mui/icons-material';
 
 function Converter() {
 
@@ -14,6 +15,7 @@ function Converter() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [conn, setConn] = useState();
+  const [success, setSuccess] = useState("");
 
 
   const handleSelect = (event) => {
@@ -48,14 +50,19 @@ function Converter() {
   const convert = async e => {
     e.preventDefault();
     try {
+      setSuccess("");
+      setOutput("");
       const body = input;
       const response = await axios.post(`http://localhost:8080/api/${inputType}`, body, config);
       
       console.log(response.data);
       setOutput(response.data);
+      setSuccess("Successful Conversion!");
       
     } catch (err) {
+      console.log("BIG ERROR...")
       console.error(err.message);
+      setSuccess("Conversion Error!")
     }
 
   }
@@ -63,6 +70,7 @@ function Converter() {
   const resetForm = async e => {
     e.preventDefault();
     try {
+      setSuccess("");
       setInputType("");
       setInput("");
       setOutput("");
@@ -70,6 +78,7 @@ function Converter() {
       // console.log("reset");
 
     } catch (err) {
+      setSuccess("Connection Error!")
       console.error(err.message);
     }
   }
@@ -103,9 +112,14 @@ function Converter() {
     <div>
       <AppBar color="grey" position="fixed">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} textAlign="left">
+          <Typography variant="h4" component="div" sx={{ flexGrow: 0 }} textAlign="left">
             Converter
           </Typography>
+          <Box textAlign="center" sx={{ justifyContent: 'center', flexGrow: 1 }}>
+            <Typography variant="h4" color='secondary'>
+              {success}
+            </Typography>
+          </Box>
           <Button 
           className='btn'
           color='success'
@@ -165,6 +179,7 @@ function Converter() {
             <MenuItem value={"edi"}>X12 - EDI</MenuItem>
             {/* <MenuItem value={"json"}>JSON</MenuItem> */}
             <MenuItem value={"hl7"}>HL7v2</MenuItem>
+            <MenuItem value={"x12"}>EDI X12 to JSON</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -176,7 +191,7 @@ function Converter() {
           onChange={(e) => setInput(e.target.value)}
           label={"Input " + inputType.toUpperCase()}
           multiline
-          minRows={5}
+          rows={10}
           sx={{ width: '90%' }}
         />
       </div>
@@ -187,9 +202,9 @@ function Converter() {
       <TextField
         id="outlined-multiline-static"
         value={output}
-        label={"Output " + inputType.toUpperCase()}
+        label={inputType == "" ? ("Output") : ("Output Result")}
         multiline
-        minRows={5}
+        rows={10}
         sx={{ width: '90%' }}
       />
       </div>

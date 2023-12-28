@@ -68,3 +68,52 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# HL7 Conversion
+
+## Supported HL7 Message Types
+
+- ADT_A01 - Patient Administration: Admit/Visit Notification
+- ADT_A03 - Patient Administration: Discharge/End Visit
+- ADT_A04 - Patient Administration: Register a Patient
+- ADT_A08 - Patient Administration: Update Patient Information
+- ADT_A28 - Patient Administration: Add Person or Patient Information
+- ADT_A31 - Patient Administration: Update Person Information
+- ADT_A34 - Patient Administration: Merge Patient Information - Patient ID Only
+- ADT_A40 - Patient Administration: Merge Patient - Patient Identifier List
+- DFT_P03 - Post Detail Financial Transaction (does not convert FT1)
+- MDM_T02 - Original Document Notifcication and Content
+- MDM_T06 - Document Addendum Notification and Content
+- OMP_O09 - Pharmacy/Treatment Order
+- ORM_O01 - General Order Message
+- ORU_R01 - Observation Reporting: Observation and Result Transmission (Laboratory)
+- PPR_PC1 - Patient Problem: Add Problem
+- RDE_O11 - Pharmacy/Treatment Encoded Order
+- RDE_O25 - Pharmacy/Treatment Refill Authorization Request
+- VXU_V04 - Vaccination: Update Vaccination Record
+
+## Supported HL7 Message Segments
+
+- AL1 - Patient Allergy Information
+- DG1 - Diagnosis
+- EVN - Event Type
+- IN1 - Insurance
+- IN2 - Insurance Additional Information
+- MRG - Merge Patient Information
+- MSH - Message Header
+- NTE - Notes and Comments
+- OBR - Observation Request
+- OBX - Observation/Result
+- ORC - Common Order
+- PD1 - Patient Additional Demographic
+- PID - Patient Identification
+- PRB - Problem Details
+- PV1 - Patient Visit
+- PV2 - Patient Visit - Additional Information
+- RXA - Pharmacy/Treatment Administration
+- RXC - Pharmacy/Treatment Component Order
+- RXE - Pharmacy/Treatment Encoded Order
+- RXO - Pharmacy/Treatment Order (Ignored for RDE messages; RXE used instead)
+- RXR - Pharmacy/Treatment Route
+- SPM - Specimen
+- TXA - Transcription Document Header
