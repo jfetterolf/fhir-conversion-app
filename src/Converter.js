@@ -179,7 +179,9 @@ function Converter() {
             <MenuItem value={"edi"}>X12 - EDI</MenuItem>
             {/* <MenuItem value={"json"}>JSON</MenuItem> */}
             <MenuItem value={"hl7"}>HL7v2</MenuItem>
-            <MenuItem value={"x12"}>EDI X12 to JSON</MenuItem>
+            <MenuItem value={"x12"}>EDI X12-837 to JSON</MenuItem>
+            <MenuItem value={"x12270"}>EDI X12-270 to JSON</MenuItem>
+            <MenuItem value={"x12271"}>EDI X12-271 to JSON</MenuItem>
           </Select>
         </FormControl>
       </div>
